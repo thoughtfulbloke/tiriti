@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body, section, header {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 2;
+  background-color: white
+}
+.cr-section .sticky-col {
+  line-height: 1.1;
+  background-color: white
+}
