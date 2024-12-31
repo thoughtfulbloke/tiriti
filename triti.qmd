@@ -1,0 +1,237 @@
+---
+title: "Te Tiriti o Waitangi"
+format:
+  closeread-html:
+    css: styles.css
+    remove-header-space: true
+    debug-mode: false
+    cr-style:
+      section-text-color-sidebar: black
+      section-border-radius: 1px
+      narrative-text-color-sidebar: white
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+---
+
+# Te Tiriti o Waitangi – the Treaty of Waitangi
+
+*A personal historiography*
+
+The Treaty of Waitangi, signed on February 6, 1840, is considered New Zealand's founding document. It established a formal relationship between the British Crown and Māori chiefs, aiming to protect Māori interests while allowing British governance. At the time of the signing there were approximately 100,000 Māori in New Zealand, and approximately 2,000 European settlers.
+
+In the modern world, the Treaty of Waitangi is seen as a cornerstone of New Zealand's constitutional framework, guiding the relationship between the government and Māori. Its legal status has been complex and evolving over time, with the Treaty having been seen both as a justification for state power, and a symbol of partnership.
+
+Plans by the current right-wing coalition government to redefine the meaning of the Treaty have been meet with nationwide protest, with a Police estimate of 42,000 people demonstrating support for the Treaty at Parliament after other regional protests (Hīkoi mō te Tiriti)
+
+![Hīkoi mō te Tiriti, CC BY-SA 4.0 Wikipedia user Ballofstring](images/Hikoi.jpeg){fig-alt="Treaty Support protest at Parliament Nov 2024"}
+
+::::::::::::: cr-section
+@cr-tirititime As a generation who has been taught New Zealand history matures, the recognition that the treaty is a foundational document, and not to be casually disposed of, has grown dramatically. Both younger people are more supportive of the treaty than older, and also older people having become more supportive than they were when they were of younger age. <BR> <BR> So what is the history? Or at least my personal opinions on some of the histories.
+
+::: {#cr-tirititime}
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+#| label: tritiplot
+grafdata <- read.csv("data/graphdata.csv") |> 
+  mutate(survey=factor(survey),
+         agegroup_2002 = factor(agegroup_2002),
+         remove_treaty = factor(remove_treaty,
+                                levels=c("Strongly Agree",
+                                         "Agree",
+                                         "Neutral",
+                                         "Disagree",
+                                         "Strongly Disagree")))
+ggplot(grafdata, aes(x=survey,y=percent,colour=agegroup_2002, group=agegroup_2002, shape=agegroup_2002, fill=agegroup_2002)) + geom_line() +
+  facet_wrap(~remove_treaty, ncol=5) + geom_point(size=1.8) +
+  scale_colour_viridis_d(option = "plasma", end=0.92, name="Age in\n2002") +
+  labs(title="New Zealand became more pro-treaty as more people understood NZ history.",
+  subtitle="Responses to 'Do you agree with removing the Treaty of Waitangi from the law', by age") + xlab("\nElection study year\n") +
+  ylab("Percentage of cohort\n") +
+  scale_shape_manual(values=c(21,22,23,24), name="Age in\n2002") + 
+  scale_fill_viridis_d(option = "plasma", end=0.95, name="Age in\n2002") +
+  labs(caption = "Source: New Zealand Election Study 2002, 2020. datasets: http://www.nzes.org") + theme_minimal() +
+  theme(panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
+
+```
+:::
+
+@cr-tritifull One justification used in different expressions of power is that there are multiple versions (Māori and English) of the Treaty. While the text of a Treaty is internationally recognised as being the text of the treaty that was signed by both parties, having another version claimed to be the one "true" one can be rhetorically convenient to some.
+
+::: {#cr-tritifull .scale-to-fill}
+| TE TIRITI O WAITANGI
+| 
+| Ko Wikitoria te Kuini o Ingarani i tana mahara atawai ki nga Rangatira me nga Hapu o Nu Tirani i tana hiahia hoki kia tohungia ki a ratou o ratou rangatiratanga me to ratou wenua, a kia mau tonu hoki te Rongo ki a ratou me te Atanoho hoki kua wakaaro ia he mea tika kia tukua mai tetahi Rangatira - hei kai wakarite ki nga Tangata maori o Nu Tirani - kia wakaaetia e nga Rangatira maori te Kawanatanga o te Kuini ki nga wahikatoa o te wenua nei me nga motu - na te mea hoki he tokomaha ke nga tangata o tona Iwi Kua noho ki tenei wenua, a e haere mai nei.
+| 
+| Na ko te Kuini e hiahia ana kia wakaritea te Kawanatanga kia kaua ai nga kino e puta mai ki te tangata maori ki te Pakeha e noho ture kore ana.
+| 
+| Na kua pai te Kuini kia tukua a hau a Wiremu Hopihona he Kapitana i te Roiara Nawi hei Kawana mo nga wahi katoa o Nu Tirani e tukua aianei amua atu ki te Kuini, e mea atu ana ia ki nga Rangatira o te wakaminenga o nga hapu o Nu Tirani me era Rangatira atu enei ture ka korerotia nei.
+| 
+| Ko te tuatahi
+| 
+| Ko nga Rangatira o te wakaminenga me nga Rangatira katoa hoki ki hai i uri ki taua wakaminenga ka tuku rawa atu ki te Kuini o Ingarani ake tonu atu - [te Kawanatanga katoa]{#cr-Kawanatangakatoa} o o ratou wenua.
+| 
+| Ko te tuarua
+| 
+| Ko te Kuini o Ingarani ka wakarite ka wakaae ki nga Rangatira ki nga hapu - ki nga tangata katoa o Nu Tirani te tino rangatiratanga o o ratou wenua o ratou kainga me o ratou taonga katoa. Otiia ko nga Rangatira o te wakaminenga me nga Rangatira katoa atu ka tuku ki te Kuini te hokonga o era wahi wenua e pai ai te tangata nona te wenua - ki te ritenga o te utu e wakaritea ai e ratou ko te kai hoko e meatia nei e te Kuini hei kai hoko mona.
+| 
+| [Ko te tuatoru]{#cr-tuatoru}
+| 
+| Hei wakaritenga mai hoki tenei mo te wakaaetanga ki te Kawanatanga o te Kuini - Ka tiakina e te Kuini o Ingarani nga tangata maori katoa o Nu Tirani ka tukua ki a ratou nga tikanga katoa rite tahi ki ana mea ki nga tangata o Ingarani.
+| 
+| signed W. Hobson Consul & Lieutenant Governor
+| 
+| Na ko matou ko nga Rangatira o te Wakaminenga o nga hapu o Nu Tirani ka huihui nei ki Waitangi ko matou hoki ko nga Rangatira o Nu Tirani ka kite nei i te ritenga o enei kupu. Ka tangohia ka wakaaetia katoatia e matou, koia ka tohungia ai o matou ingoa o matou tohu.
+| 
+| Ka meatia tenei ki Waitangi i te ono o nga ra o Pepueri i te tau kotahi mano e waru rau e wa te kau o to tatou Ariki.
+| 
+| Ko nga Rangatira o te Wakaminenga
+:::
+
+@cr-treatyfull There are a few key places the language differs from the earlier English draft. It is not at all contentious that there are multiple versions - The two versions are (these days) displayed together. The arguments come with how much attention you give each version, and so the justifications for what actions the Treaty permits.
+
+::: {#cr-treatyfull .scale-to-fill}
+| THE TREATY OF WAITANGI
+| 
+| Her Majesty Victoria Queen of the United Kingdom of Great Britain and Ireland regarding with Her Royal Favor the Native Chiefs and Tribes of New Zealand and anxious to protect their just Rights and Property and to secure to them the enjoyment of Peace and Good Order has deemed it necessary in consequence of the great number of Her Majesty's Subjects who have already settled in New Zealand and the rapid extension of Emigration both from Europe and Australia which is still in progress to constitute and appoint a functionary properly authorized to treat with the Aborigines of New Zealand for the recognition of Her Majesty's sovereign authority over the whole or any part of those islands - Her Majesty therefore being desirous to establish a settled form of Civil Government with a view to avert the evil consequences which must result from the absence of the necessary Laws and Institutions alike to the native population and to Her subjects has been graciously pleased to empower and to authorize me William Hobson a Captain in Her Majesty's Royal Navy Consul and Lieutenant Governor of such parts of New Zealand as may be or hereafter shall be ceded to Her Majesty to invite the confederated and independent Chiefs of New Zealand to concur in the following Articles and Conditions.
+| 
+| Article the first
+| 
+| The Chiefs of the Confederation of the United Tribes of New Zealand and the separate and independent Chiefs who have not become members of the Confederation cede to Her Majesty the Queen of England absolutely and without reservation all the rights and powers of Sovereignty which the said Confederation or Individual Chiefs respectively exercise or possess, or may be supposed to exercise or to possess over their respective Territories as the sole sovereigns thereof.
+| 
+| Article the second
+| 
+| Her Majesty the Queen of England confirms and guarantees to the Chiefs and Tribes of New Zealand and to the respective families and individuals thereof the full exclusive and undisturbed possession of their Lands and Estates Forests Fisheries and other properties which they may collectively or individually possess so long as it is their wish and desire to retain the same in their possession; but the Chiefs of the United Tribes and the individual Chiefs, yield to Her Majesty the exclusive right of Preemption over such lands as the proprietors thereof may be disposed to alienate at such prices as may be agreed upon between the respective Proprietors and persons appointed by Her Majesty to treat with them in that behalf.
+| 
+| Article the third
+| 
+| In consideration thereof Her Majesty the Queen of England extends to the Natives of New Zealand Her royal protection and imparts to them all the Rights and Privileges of British Subjects.
+| 
+| signed W. Hobson Lieutenant Governor
+| 
+| Now therefore We the Chiefs of the Confederation of the United Tribes of New Zealand being assembled in Congress at Victoria in Waitangi and We the Separate and Independent Chiefs of New Zealand claiming authority over the Tribes and Territories which are specified after our respective names, having been made fully to understand the Provisions of the foregoing Treaty, accept and enter into the same in the full spirit and meaning thereof in witness of which we have attached our signatures or marks at the places and the dates respectively specified.
+| 
+| Done at Waitangi this Sixth day of February in the year of Our Lord one thousand eight hundred and forty.
+| 
+| The Chiefs of the Confederation
+:::
+
+@cr-tuatahi In article one, rangatira gave the queen ‘te Kawanatanga katoa’ – the governance or government over the land. In the English draft rangatira gave the queen ‘all the rights and powers of sovereignty’ over the land.<BR> <BR>There is a large difference between the ideas of governance, and the ideas of sovereign powers.
+
+::: {#cr-tuatahi .scale-to-fill}
+| Ko te tuatahi
+| 
+| Ko nga Rangatira o te wakaminenga me nga Rangatira katoa hoki ki hai i uri ki taua wakaminenga ka tuku rawa atu ki te Kuini o Ingarani ake tonu atu - [te Kawanatanga katoa]{style="color: #990000"} o o ratou wenua.
+| 
+| Article the first
+| 
+| The Chiefs of the Confederation of the United Tribes of New Zealand and the separate and independent Chiefs who have not become members of the Confederation cede to Her Majesty the Queen of England [absolutely and without reservation all the rights and powers of Sovereignty]{style="color: #000077"} which the said Confederation or Individual Chiefs respectively exercise or possess, or may be supposed to exercise or to possess over their respective Territories as the sole sovereigns thereof.
+:::
+
+@cr-tuarua In article two, the treaty confirmed and guaranteed the rangatira ‘te tino rangatiratanga’ – the exercise of chieftainship – over their lands, villages and ‘taonga katoa’ – all treasured things. Māori agreed to give the Crown the right to deal with them over land transactions. The English draft confirmed and guaranteed to the rangatira ‘exclusive and undisturbed possession of their lands and estates, forests, fisheries, and other properties’. The Crown sought an exclusive right to deal with Māori over land transactions.
+
+::: {#cr-tuarua .scale-to-fill}
+| Ko te tuarua
+| 
+| Ko te Kuini o Ingarani ka wakarite ka wakaae ki nga Rangatira ki nga hapu - ki nga tangata katoa o Nu Tirani te [tino rangatiratanga o o ratou wenua o ratou kainga me o ratou taonga katoa]{style="color: #990000"}. Otiia ko nga Rangatira o te wakaminenga me nga Rangatira katoa atu ka tuku ki te Kuini te hokonga o era wahi wenua e pai ai te tangata nona te wenua - ki te ritenga o te utu e wakaritea ai e ratou ko te kai hoko e meatia nei e te Kuini hei kai hoko mona.
+| 
+| Article the second
+| 
+| Her Majesty the Queen of England confirms and guarantees to the Chiefs and Tribes of New Zealand and to the respective families and individuals thereof the full [exclusive and undisturbed possession of their Lands and Estates Forests Fisheries and other properties]{style="color: #000077"} which they may collectively or individually possess so long as it is their wish and desire to retain the same in their possession; but the Chiefs of the United Tribes and the individual Chiefs, yield to Her Majesty the exclusive right of Preemption over such lands as the proprietors thereof may be disposed to alienate at such prices as may be agreed upon between the respective Proprietors and persons appointed by Her Majesty to treat with them in that behalf.
+:::
+
+@cr-artthree In article three, the Crown gave an assurance that Māori would have the queen’s protection and all rights accorded British subjects. This is viewed as a matching an accurate translation of the English text. The complexities here are generated by the rights not being defined.<BR> <BR>Rights not being prescriptively defined is not a bad thing, however. If a document is to continue to be relevant to a changing world it needs interpretation against that changing world. But the price of that continued relevance is acknowledging that it is not fixed in history, and there is always work to be done.
+
+::: {#cr-artthree .scale-to-fill}
+| Ko te tuatoru
+| 
+| Hei wakaritenga mai hoki tenei mo te wakaaetanga ki te Kawanatanga o te Kuini - Ka tiakina e te Kuini o Ingarani nga tangata maori katoa o Nu Tirani ka tukua ki a ratou nga tikanga katoa rite tahi ki ana mea ki nga tangata o Ingarani.
+| 
+| Article the third
+| 
+| In consideration thereof Her Majesty the Queen of England extends to the Natives of New Zealand Her royal protection and imparts to them all the Rights and Privileges of British Subjects.
+:::
+
+@cr-martinquote Even under the interpretations of what should be the treaty that were the most favourable possible to the Britian, the breaches in the treaty were quick to come. This was not lost to observers of the day such as William Martin in 1860, who as a former chief justice wrote about the ongoing requirements the treaty imposed. Simply put, the treaty was not optional. Even if the government wanted to treat it as such.
+
+::: {#cr-martinquote .scale-to-fill}
+| Are the Natives to keep or lose their lands according to the decision of a subordinate and dependent agent of the Executive Government ? If this be so, what is the value of the Treaty of Waitangi? (p88-89)
+| 
+| The compact is binding irrevocably. We cannot repudiate it so long as we retain the benefit which we obtained by it. <BR> It is the clear duty of every officer of the Crown, and of every loyal citizen, to do his utmost, by deed and word, to fulfil this national undertaking. Our individual opinions, about the policy or wisdom of the undertaking, have nothing to do with our duty in this matter. Our individual opinions, about the capacity or character of the Natives, have nothing to do with it. (p90)
+| 
+
+:::
+
+@cr-arawanews However, many Treaty breaches followed over the next decades. In the 1920s, while not taking any large scale responses, the government was starting to officially recognise, by settling disputes, that the Crown had acted improperly with regard to its Treaty obligations. Such settlements were associated with highly conciliatory newspaper reports like this 11 September 1926 report in the New Zealand Times, "THE ARAWA TRIBE"
+
+::: {#cr-arawanews}
+![](images/arawa.png){fig-alt="Noting how the tribe used its settlement for the common good"}
+:::
+
+@cr-comment For the nature of modern New Zealand, the Treaty of Waitangi Act 1975 dramatically changed the official role of the treaty. A judicial mechanism for righting wrongs was established with the formation of the Waitangi Tribunal. This role was limited to claims based on breaches occuring after the passing of the act. At the time critics noted this was a major problem, as the harms of older treaty breaches to not magically stop breaches nor restore people to the state of the treaty.
+
+::: {#cr-comment}
+![](images/comment.png){fig-alt="Newspaper report of the Waitangi Act"}
+:::
+
+@cr-muldoon By the 1980s the official role of the treaty in governing expanded with cross-party support in parliament. The principles of the treaty becoming a standard consideration, and the scope of the Waitangi Tribunal being expanded to investigate and report on historical breaches back to the signing of the Treaty. It is this historical consensus that the present government is promoting legislation to undermine.
+
+::: {#cr-muldoon}
+![](images/muldoon.png){fig-alt="National, the right wing party, speaking in support of the treaty."}
+:::
+:::::::::::::
+
+\
+\
+\
+
+Public submissions on the proposed Principles of the Treaty of Waitangi Bill are open until the end of 7th of January (New Zealand time) and can be made at [the parliament website](https://www.parliament.nz/en/pb/sc/make-a-submission/document/54SCJUST_SCF_227E6D0B-E632-42EB-CFFE-08DCFEB826C6/principles-of-the-treaty-of-waitangi-bill%20)
+
+It is a general recommendation that people not just sign an automatic form letter, but instead submit using your own words. There are many submission guides out there that discuss the detail, such as [Ourtuhono](https://www.ourtuhono.nz) but even a simple submission is fine. I personally think the bill is unnecessary, divisive, morally wrong, and the continued promotion of it will promote division and harm, and my recommended action is that the Bill be stopped at the earliest opportunity. There is nothing complex in me submitting that.
+
+But if you do want to read some other submissions that people have made, some that have been made public I have heard of are:
+
+[New Zealand Rugby League](https://www.tiktok.com/@alicesoapbox/video/7449555748469689607) (report, showing you don't have to be a policy wonk)
+
+[Internet New Zealand](https://internetnz.nz/assets/20241220_Treaty-Principles-Bill-Submission.pdf?vid=7) (tech policy organisation)
+
+[Peter Sime](https://petesi.me/my-submission-on-the-treaty-principles-bill/) (I have no personal connection to Peter, he just put his submission online for others to read)
+
+[Te Kāhui Tika Tangata Human Rights Commission](https://tikatangata.org.nz/cms/assets/Documents/Submissions/2024-25-Submissions/Summary-of-HRC-Submission-on-Treaty-Principles-Bill.pdf) (because it is the Human Rights Commission)
+
+and [Emily Writes](https://emilywrites.substack.com/p/how-to-make-a-submission-against) which is a good write-up of the process of making a submission
+
+### Sources (in order of use):
+
+Orange,Claudia. 'Te Tiriti o Waitangi – the Treaty of Waitangi', Te Ara - the Encyclopedia of New Zealand, http://www.TeAra.govt.nz/en/te-tiriti-o-waitangi-the-treaty-of-waitangi/print (accessed 30 December 2024). Creative Commons Attribution-NonCommercial 3.0 New Zealand Licence
+
+Wikipedia user Ballofstring. Hikoi to Parliament. https://commons.wikimedia.org/wiki/File:Hikoi_to_Parliament_2.jpg Creative Commons Attribution-Share Alike 4.0 International
+
+Vowles, Jack; Banducci, Susan; Karp, Jeffrey; Aimer, Peter; Miller, Raymond, 2019, "2002 New Zealand Election Study", https://doi.org/10.26193/9DE0X4, ADA Dataverse, V6. Data use agreement https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/9DE0X4&version=6.2&selectTab=termsTab
+
+Vowles, Jack; Barker, Fiona; Krewel, Mona; Hayward, Janine; Curtin, Jennifer; Greaves, Lara; Oldfield, Luke, 2022, "2020 New Zealand Election Study", https://doi.org/10.26193/BPAMYJ, ADA Dataverse, V3. Data use aggrement https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/BPAMYJ&version=3.1&selectTab=termsTab
+
+Manatū Taonga — Ministry for Culture and Heritage. Māori text of Te Tiriti, URL: https://nzhistory.govt.nz/politics/treaty/read-the-treaty/maori-text, (Manatū Taonga — Ministry for Culture and Heritage), updated 29-May-2023 Creative Commons Attribution-NonCommercial 3.0 New Zealand Licence
+
+Manatū Taonga — Ministry for Culture and Heritage. Read the Treaty, URL: https://nzhistory.govt.nz/politics/treaty/read-the-treaty/english-text, (Manatū Taonga — Ministry for Culture and Heritage), updated 12-Jun-2023 Creative Commons Attribution-NonCommercial 3.0 New Zealand Licence
+
+Martin, Sir William. The Taranaki Question. 2nd Edition. W. H. Dalton, 1861.
+
+THE ARAWA TRIBE. New Zealand Times, Volume LIII, Issue 12549, 11 September 1926, Page 4. https://paperspast.natlib.govt.nz/newspapers/NZTIM19260911.2.39 Creative Commons BY-NC-SA 3.0 New Zealand licence.
+
+COMMENT FROM THE CAPITAL BILL TO MAKE LEGAL SENSE OF 135-YEAR-OLD TREATY. Press, Volume CXV, Issue 33758, 3 February 1975, Page 12. Creative Commons BY-NC-SA 3.0 New Zealand licence. https://paperspast.natlib.govt.nz/newspapers/CHP19750203.2.106
+
+Mr Muldoon promises to help Maoris who want to keep land. Press, Volume CXV, Issue 33978, 20 October 1975, Page 2. https://paperspast.natlib.govt.nz/newspapers/CHP19751020.2.17 Creative Commons BY-NC-SA 3.0 New Zealand licence.
+
+### This project
+
+The raw files for this project are available at [https://github.com/thoughtfulbloke/tiriti](https://github.com/thoughtfulbloke/tiriti)
